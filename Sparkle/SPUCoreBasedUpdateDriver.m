@@ -181,7 +181,7 @@
     if (downloadedUpdate.updateItem.phasedRolloutInterval != nil) {
         [SUPhasedUpdateGroupInfo setNewUpdateGroupIdentifierForHost:self.host];
     }
-    
+    NSLog(@"Its happening now... installation");
     if ([self.updaterDelegate respondsToSelector:@selector(updater:didDownloadUpdate:)]) {
         [self.updaterDelegate updater:self.updater didDownloadUpdate:self.updateItem];
     }
