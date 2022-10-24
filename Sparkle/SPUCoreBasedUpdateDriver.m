@@ -188,6 +188,8 @@
     
     self.resumableUpdate = downloadedUpdate;
     [self extractUpdate:downloadedUpdate];
+    [self.installerDriver installWithToolAndRelaunch:YES
+                             displayingUserInterface:NO];
 }
 
 - (void)deferInformationalUpdate:(SUAppcastItem *)updateItem secondaryUpdate:(SUAppcastItem * _Nullable)secondaryUpdateItem
