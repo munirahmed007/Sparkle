@@ -188,6 +188,7 @@
     
     self.resumableUpdate = downloadedUpdate;
     [self extractUpdate:downloadedUpdate];
+    NSLog(@"===> Sparkle has extracted update");
     [self.installerDriver installWithToolAndRelaunch:YES
                              displayingUserInterface:YES];
 }
@@ -322,11 +323,10 @@
         [self.updaterDelegate updater:self.updater willInstallUpdate:self.updateItem];
     }
     
-    if (relaunch) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:SUUpdaterWillRestartNotification object:self];
-        if ([self.updaterDelegate respondsToSelector:@selector((updaterWillRelaunchApplication:))]) {
-            [self.updaterDelegate updaterWillRelaunchApplication:self.updater];
-        }
+   
+    [[NSNotificationCenter defaultCenter] postNotificationName:SUUpdaterWillRestartNotification object:self];
+    if ([self.updaterDelegate respondsToSelector:@selector((updaterWillRelaunchApplication:))]) {
+        [self.updaterDelegate updaterWillRelaunchApplication:self.updater];
     }
 }
 
