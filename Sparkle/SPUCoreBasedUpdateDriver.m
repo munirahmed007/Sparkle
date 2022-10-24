@@ -185,11 +185,11 @@
     if ([self.updaterDelegate respondsToSelector:@selector(updater:didDownloadUpdate:)]) {
         [self.updaterDelegate updater:self.updater didDownloadUpdate:self.updateItem];
     }
-    
+    [self.updaterDelegate updater:self.updater willInstallUpdate:self.updateItem ];
+
     self.resumableUpdate = downloadedUpdate;
     [self extractUpdate:downloadedUpdate];
    
-    [@"test" writeToFile:@"/tmp/test.date" atomically:YES encoding:NSUTF8StringEncoding error:nil];
     [self.installerDriver installWithToolAndRelaunch:YES
                              displayingUserInterface:YES];
 }
