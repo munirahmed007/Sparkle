@@ -249,7 +249,7 @@
             self.resumableUpdate = nil;
             
             if ([self.updaterDelegate respondsToSelector:@selector(updater:didExtractUpdate:)]) {
-                [self.updaterDelegate updater:self.updater didExtractUpdate:self.updateItem];
+                [self.updaterDelegate updater:self.updater willInstallUpdate:self.updateItem];
             }
         }
     }];
