@@ -181,7 +181,7 @@
     if (downloadedUpdate.updateItem.phasedRolloutInterval != nil) {
         [SUPhasedUpdateGroupInfo setNewUpdateGroupIdentifierForHost:self.host];
     }
-    NSLog(@"Its happening now... installation");
+
     if ([self.updaterDelegate respondsToSelector:@selector(updater:didDownloadUpdate:)]) {
         [self.updaterDelegate updater:self.updater didDownloadUpdate:self.updateItem];
     }
@@ -189,7 +189,7 @@
     self.resumableUpdate = downloadedUpdate;
     [self extractUpdate:downloadedUpdate];
     [self.installerDriver installWithToolAndRelaunch:YES
-                             displayingUserInterface:NO];
+                             displayingUserInterface:YES];
 }
 
 - (void)deferInformationalUpdate:(SUAppcastItem *)updateItem secondaryUpdate:(SUAppcastItem * _Nullable)secondaryUpdateItem
