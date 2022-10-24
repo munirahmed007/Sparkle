@@ -17,10 +17,10 @@ let package = Package(
             targets: ["Sparkle"])
     ],
     targets: [
-        .target(
+        .binaryTarget(
             name: "Sparkle",
-            dependencies: [],
-            resources: []
-        ),
+            url: url,
+            checksum: checksum
+        )
     ]
 )

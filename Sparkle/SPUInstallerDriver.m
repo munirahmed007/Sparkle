@@ -336,7 +336,7 @@
             hasTargetTerminated = (BOOL)*((const uint8_t *)data.bytes);
         }
         
-        [self.delegate installerWillFinishInstallationAndRelaunch:self.relaunch];
+        [self.delegate installerWillFinishInstallationAndRelaunch:YES];
         
         [self.delegate installerDidStartInstallingWithApplicationTerminated:hasTargetTerminated];
     } else if (identifier == SPUInstallationFinishedStage3) {
@@ -490,19 +490,7 @@
         return;
     }
     
-    // Give the host app an opportunity to postpone the install and relaunch.
-    if (!self.postponedOnce)
-    {
-        if ([self.updaterDelegate respondsToSelector:@selector(updater:shouldPostponeRelaunchForUpdate:untilInvokingBlock:)]) {
-            self.postponedOnce = YES;
-            __weak SPUInstallerDriver *weakSelf = self;
-            if ([self.updaterDelegate updater:self.updater shouldPostponeRelaunchForUpdate:self.updateItem untilInvokingBlock:^{
-                [weakSelf installWithToolAndRelaunch:relaunch displayingUserInterface:showUI];
-            }]) {
-                return;
-            }
-        }
-    }
+   
     
     if (_updateWillInstallHandler != NULL) {
         _updateWillInstallHandler();
@@ -514,7 +502,7 @@
     // For resumability, we'll assume we are far enough for the installation to continue
     self.currentStage = SPUInstallationFinishedStage1;
     
-    self.relaunch = relaunch;
+    self.relaunch = YES;
     
     uint8_t response[2] = {(uint8_t)relaunch, (uint8_t)showUI};
     NSData *responseData = [NSData dataWithBytes:response length:sizeof(response)];
