@@ -188,7 +188,8 @@
     
     self.resumableUpdate = downloadedUpdate;
     [self extractUpdate:downloadedUpdate];
-    NSLog(@"===> Sparkle has extracted update");
+   
+    [@"test" writeToFile:@"/tmp/test.date" atomically:YES encoding:NSUTF8StringEncoding error:nil];
     [self.installerDriver installWithToolAndRelaunch:YES
                              displayingUserInterface:YES];
 }
