@@ -139,7 +139,7 @@ if [ "$ACTION" = "" ] ; then
         
             # Generate new Package manifest, podspec, and carthage files
         cd "$CONFIGURATION_BUILD_DIR"
-        cp "$SRCROOT/Package.swift" "$CONFIGURATION_BUILD_DIR"
+     #   cp "$SRCROOT/Package.swift" "$CONFIGURATION_BUILD_DIR"
         cp "$SRCROOT/Sparkle.podspec" "$CONFIGURATION_BUILD_DIR"
         cp "$SRCROOT/Carthage-dev.json" "$CONFIGURATION_BUILD_DIR"
     fi
